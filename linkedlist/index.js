@@ -8,6 +8,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
   }
 
   // add new node in first
@@ -22,13 +23,11 @@ class LinkedList {
     let newNode = new Node(data);
     if (!this.head) {
       this.head = newNode;
-      return;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
-    current.next = newNode;
   }
 
   // calculating the total length of the list
@@ -39,7 +38,7 @@ class LinkedList {
       count++;
       current = current.next;
     }
-    console.log(count);
+    return count;
   }
   // find data by id
   findByData(data) {
@@ -54,6 +53,17 @@ class LinkedList {
     console.log("Data not found.");
   }
 
+  sortList() {
+    let current = this.head;
+    let list = [];
+    while (current) {
+      list.push(current.data);
+      current = current.next;
+    }
+    list.push(current);
+    return list.sort();
+  }
+
   // traversing and showing the list
   showList() {
     let current = this.head;
@@ -62,16 +72,12 @@ class LinkedList {
       list.push(current.data);
       current = current.next;
     }
-    list.push(current);
-    console.log(list);
+   
+    return list;
   }
 }
 
 const likedList = new LinkedList();
 
-likedList.append(4);
-likedList.append(5);
-likedList.append(45);
-likedList.append(34);
-likedList.showList();
+
 

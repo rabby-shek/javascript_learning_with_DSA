@@ -1,20 +1,28 @@
 let startTime = performance.now();
 /////////////////code here /////////////////////////
 
-function rotateArray(nums, k) {
-  for (let i = 0; i < nums.length; i++) {
-    let newPosition = (i + k) % nums.length;
-    let temp = nums[i];
-    nums[i] = nums[newPosition];
-    nums[newPosition] = temp;
+function findIndex(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  
+  while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+      console.log('mid : ',mid);
+      if (nums[mid] === target) {
+          return mid;
+      } else if (nums[mid] < target) {
+          left = mid + 1;
+      } else {
+          right = mid - 1;
+      }
   }
-  return nums;
+  
+  return left;
 }
+const nums = [1, 3, 5, 6];
 
-// Example usage:
-const nums = [1, 2, 3, 4, 5, 6, 7];
-let k = 3;
-console.log(rotateArray(nums, k));
+const result = findIndex(nums, 2);
+console.log(result);
 
 ///////////////////////////////////////////////////
 let endTime = performance.now();
