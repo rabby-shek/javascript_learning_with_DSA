@@ -1,30 +1,48 @@
 let startTime = performance.now();
-/////////////////code here /////////////////////////
+///////////////// code here /////////////////////////
 
-function findIndex(nums, target) {
-  let left = 0;
-  let right = nums.length - 1;
+// Example array
+// let myArray = [1, 2, 3];
+
+// const promise = new Promise((resolve, reject) => {
+//         myArray.push(4); 
+//         resolve(myArray); 
+// });
+
+// promise.then(updatedArray => {
+//     console.log("Array inside Promise:", updatedArray);
+//     return updatedArray;
+// }).then(updatedArray => {
+//     console.log("Array outside Promise:", updatedArray);
+// }).catch(error => {
+//     console.error("Error occurred:", error);
+// });
+
+// console.log(myArray);
+const newArray = [];
+const promise = new Promise((resolve, reject) => {
+    let myArray = [1, 2, 3]; 
+    
   
-  while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
-      console.log('mid : ',mid);
-      if (nums[mid] === target) {
-          return mid;
-      } else if (nums[mid] < target) {
-          left = mid + 1;
-      } else {
-          right = mid - 1;
-      }
-  }
-  
-  return left;
-}
-const nums = [1, 3, 5, 6];
+    myArray.push(4); 
+    resolve(myArray);
+});
 
-const result = findIndex(nums, 2);
-console.log(result);
+promise.then(updatedArray => {
+    console.log("Array inside Promise:", updatedArray); 
+    return updatedArray;
+}).then(updatedArray => {
+    for(let i = 0; i<updatedArray.length; i++){
+        newArray.push(updatedArray[i]);
+    }
+}).catch(error => {
+    console.error("Error occurred:", error);
+});
 
-///////////////////////////////////////////////////
+console.log(newArray);
+
+
+///////////////// code here /////////////////////////////////
 let endTime = performance.now();
 let executionTime = endTime - startTime;
 console.log(`Running Time : ${executionTime.toFixed(3)} milliseconds`);
